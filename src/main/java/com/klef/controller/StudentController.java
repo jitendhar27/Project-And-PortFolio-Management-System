@@ -82,7 +82,7 @@ public class StudentController {
             @RequestParam("progress") String progress,
             @RequestParam(value = "mediaUrl", required = false) String mediaUrl,
             HttpSession session) {
-        String username = (String) session.getAttribute("studentName");
+        String username = (String) session.getAttribute("studentUsername");
         if (username == null) {
             return "redirect:/login";
         }
@@ -93,6 +93,7 @@ public class StudentController {
         newProject.setProgress(progress);
         newProject.setMediaUrl(mediaUrl);
         newProject.setStudent(student);
+ 
 
         projectService.createProject(newProject);
         return "redirect:/student/dashboard";

@@ -37,6 +37,10 @@ public class LoginController {
         }
         return modelAndView;
     }
+    @GetMapping("/home")
+    public String home() {
+        return "index";  // Main homepage view (index.jsp or similar)
+    }
 
     // Handle login
     @PostMapping("/login")
@@ -72,10 +76,38 @@ public class LoginController {
     // Render the register page
     @GetMapping("/register")
     public ModelAndView showRegisterPage() {
-        return new ModelAndView("register"); // Renders register.jsp
+        return new ModelAndView("register");
     }
+    @PostMapping("/register")
+    public String handleRegister(
+            @RequestParam String name,
+            @RequestParam String username,
+            @RequestParam String email,
+            @RequestParam String password,
+            Model model) {
+        
+        // Check if username already exists
+        if (userService.isUsernameTaken(username)) {
+            model.addAttribute("error", "Username is already taken.");
+            return "register"; // Return to register page with error message
+        }
 
-    // Handle logout
+        // Create and save a new student
+        Student newStudent = new Student();
+        newStudent.setName(name);
+        newStudent.setUsername(username);
+        newStudent.setEmail(email);
+        newStudent.setPassword(password);
+        
+        userService.saveStudent(newStudent);
+
+        model.addAttribute("success", "Registration successful! Please log in.");
+        return "redirect:/login";
+    }
+    @GetMapping("/about-us")
+    public String aboutUs() {
+        return "about_us";  // About Us page view
+    }
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // Invalidate the current session

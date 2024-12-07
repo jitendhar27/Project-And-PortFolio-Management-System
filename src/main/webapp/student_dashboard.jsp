@@ -21,36 +21,48 @@
             padding: 15px 20px;
             text-align: center;
         }
-        h2 {
-            color: #333;
+        nav {
+            background-color: #333;
+            overflow: hidden;
         }
-        table {
-            width: 50%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .project-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .project-list li {
-            background-color: #fff;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .project-list li a {
-            color: #4CAF50;
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
             text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        .overview {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .card h4 {
+            color: #4CAF50;
         }
         .buttons {
             text-align: center;
@@ -63,6 +75,7 @@
             text-decoration: none;
             border-radius: 5px;
             margin: 0 10px;
+            display: inline-block;
         }
         .btn:hover {
             background-color: #45a049;
@@ -78,68 +91,57 @@
 <body>
 
 <header>
-    <h1>Welcome to the Student Dashboard</h1>
+    <h1>ProjectHub</h1>
 </header>
 
+<nav>
+	<a href="/student/dashboard">Dashboard</a>
+    <a href="/student/view-profile">View Profile</a>
+    <a href="/student/view-projects">View Projects</a>
+    <a href="/student/add-project">Add Project</a>
+    <a href="/student/edit-profile">Edit Profile</a>
+    <a href="/logout" class="logout-btn">Logout</a>
+</nav>
+
 <div class="container">
-    <!-- Display student details -->
-    <h2>Student Details</h2>
-    <table>
-        <tr>
-            <th>Username</th>
-            <td>${student.username}</td>
-        </tr>
-        <tr>
-            <th>Full Name</th>
-            <td>${student.name}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>${student.email}</td>
-        </tr>
-    </table>
-
-    <!-- Display the list of projects -->
-    <h3>Your Projects:</h3>
-    <ul class="project-list">
+    <!-- Projects Overview Section -->
+    <h2>Projects Overview</h2>
+    <div class="overview">
         <% 
-            // Get the list of projects from the request attribute
             List<Project> projects = (List<Project>) request.getAttribute("projects");
-            if (projects != null && !projects.isEmpty()) {
+            int totalProjects = (projects != null) ? projects.size() : 0;
+            int completedProjects = 0;
+            int inProgressProjects = 0;
+
+            if (projects != null) {
                 for (Project project : projects) {
-        %>
-        <li>
-            <strong><%= project.getTitle() %></strong><br>
-            Description: <%= project.getDescription() %><br>
-            Progress: <%= project.getProgress() %><br>
-            Project Id: <%= project.getId() %>
-            Media URL: <a href="<%= project.getMediaUrl() %>" target="_blank"><%= project.getMediaUrl() %></a><br>
-            <!-- Add Remove Button -->
-            <form action="/student/remove-project" method="POST" style="display:inline;">
-			    <input type="hidden" name="projectId" value="<%= project.getId() %>">
-			    <button type="submit" class="btn" style="background-color: #f44336;">Remove</button>
-			</form>
-
-
-        </li>
-        <% 
+                    if ("Completed".equalsIgnoreCase(project.getProgress())) {
+                        completedProjects++;
+                    } else {
+                        inProgressProjects++;
+                    }
                 }
-            } else {
-        %>
-        <li>No projects found. <a href="/student/create-project" class="btn">Add a Project</a></li>
-        <% 
             }
         %>
-    </ul>
-    <!-- Edit Profile and Logout Links -->
-    <div class="buttons">
-        <a href="/student/edit-profile" class="btn">Edit Profile</a>
-        <a href="/logout" class="btn logout-btn">Logout</a>
+        <div class="card">
+            <h4>Total Projects</h4>
+            <p><%= totalProjects %></p>
+        </div>
+        <div class="card">
+            <h4>Completed Projects</h4>
+            <p><%= completedProjects %></p>
+        </div>
+        <div class="card">
+            <h4>Projects in Progress</h4>
+            <p><%= inProgressProjects %></p>
+        </div>
     </div>
-    <div style="text-align: center; margin: 20px;">
-	    <a href="/student/add-project" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Add New Project</a>
-	</div>
-    
+
+    <!-- Buttons Section -->
+    <div class="buttons">
+        <a href="/student/add-project" class="btn">Add New Project</a>
+        <a href="/student/view-projects" class="btn">View All Projects</a>
+    </div>
 </div>
 
 </body>

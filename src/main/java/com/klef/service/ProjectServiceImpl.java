@@ -5,7 +5,10 @@ import com.klef.model.Project;
 import com.klef.model.Student;
 import com.klef.repository.ProjectRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -15,6 +18,8 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectServiceImpl(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
+    
+    
 
     @Override
     public List<Project> getAllProjects() {

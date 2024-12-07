@@ -10,7 +10,7 @@ import com.klef.repository.StudentRepository;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final StudentRepository studentRepository;
+	private final StudentRepository studentRepository;
     private final AdminRepository adminRepository;
 
     public UserServiceImpl(StudentRepository studentRepository, AdminRepository adminRepository) {
@@ -20,18 +20,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Object authenticate(String username, String password) {
-        // First, check in Student repository
+        // Check in Student repository
         Student student = studentRepository.findByUsernameAndPassword(username, password);
         if (student != null) {
             return student;
         }
 
-        // Then, check in Admin repository
+        // Check in Admin repository
         Admin admin = adminRepository.findByUsernameAndPassword(username, password);
         if (admin != null) {
             return admin;
         }
 
         return null; // Return null if no user is found
+    }
+
+    @Override
+    public boolean isUsernameTaken(String username) {
+        return studentRepository.findByUsername(username) != null;
+    }
+
+    @Override
+    public void saveStudent(Student student) {
+        studentRepository.save(student);
     }
 }

@@ -2,6 +2,9 @@ package com.klef.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
 
 import com.klef.model.Project;
@@ -11,6 +14,7 @@ import com.klef.service.StudentService;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/student")
@@ -108,9 +112,20 @@ public class StudentController {
     
     @GetMapping("/view-projects")
     public String viewProjects(HttpSession session, Model model) {
-        String studentName = (String) session.getAttribute("studentName");
-        if (studentName != null) {
-            model.addAttribute("studentName", studentName);
+        // Get the logged-in student's username from the session
+        String username = (String) session.getAttribute("studentUsername");
+        System.out.println("Username: " + username);
+
+        if (username != null) {
+            Student student = studentService.findByUsername(username);
+            List<Project> projects = projectService.getProjectsByStudent(student);
+
+            System.out.println("Student: " + student.getName());
+            projects.forEach(project -> System.out.println("Project: " + project.getName()));
+            model.addAttribute("student", student);
+            model.addAttribute("projects", projects);
+        } else {
+            return "redirect:/login";
         }
         return "view_projects";
     }
@@ -125,15 +140,61 @@ public class StudentController {
         return "create_project";
     }
 
-    // Edit Project page
-    @GetMapping("/edit-project/{projectId}")
-    public String editProject(@PathVariable Long projectId, HttpSession session, Model model) {
+    @GetMapping("/edit-project")
+    public String editProject(@RequestParam String projectId, HttpSession session, Model model) {
         String studentName = (String) session.getAttribute("studentName");
         if (studentName != null) {
             model.addAttribute("studentName", studentName);
         }
-        // You can also add logic to fetch project details by projectId if needed
+
+        try {
+        	
+        	Long pId = Long.parseLong(projectId);
+            Project project = projectService.getProjectById(pId);
+            model.addAttribute("projectId", project.getId());
+            model.addAttribute("projectTitle", project.getTitle());
+            model.addAttribute("projectDescription", project.getDescription());
+            model.addAttribute("projectProgress", project.getProgress());
+            model.addAttribute("projectMediaUrl", project.getMediaUrl());
+        } catch (EntityNotFoundException ex) {
+            model.addAttribute("errorMessage", ex.getMessage());
+            return "redirect:/student/view-projects";
+        }
+
         return "edit_project";
+    }
+    @PostMapping("/update-project")
+    public String updateProject(@RequestParam Long projectId,
+                                @RequestParam String title,
+                                @RequestParam String description,
+                                @RequestParam String progress,
+                                @RequestParam(required = false) String mediaUrl,
+                                RedirectAttributes redirectAttributes) {
+        // Create a Project object
+        Project project = new Project();
+        project.setTitle(title);
+        project.setDescription(description);
+        project.setProgress(progress);
+        project.setMediaUrl(mediaUrl);
+
+        // Pass the project to the service
+        projectService.updateProject(projectId, project);
+
+        redirectAttributes.addFlashAttribute("successMessage", "Project updated successfully.");
+        return "redirect:/student/view-projects";
+    }
+
+
+    @GetMapping("/view-profile")
+    public String viewProfile(HttpSession session, Model model) {
+        String username = (String) session.getAttribute("studentUsername");
+        if (username != null) {
+            Student student = studentService.findByUsername(username);
+            model.addAttribute("student", student);
+        } else {
+            return "redirect:/login"; // Redirect to login if the user is not logged in
+        }
+        return "view_profile"; // Render the View Profile JSP
     }
 
     // Handle logout - invalidate session

@@ -7,4 +7,5 @@ import com.klef.model.Student;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 	Student findByUsername(String username);
 	Student findByUsernameAndPassword(String username, String password);
+	
 }

@@ -98,6 +98,9 @@
 
     <label for="progress">Progress (%):</label>
     <input type="text" id="progress" name="progress" min="0" max="100" required>
+    
+    <label for="file">Upload File:</label>
+    <input type="file" id="file" name="file" required>
 
     <label for="mediaUrl">Media URL (Optional):</label>
     <input type="url" id="mediaUrl" name="mediaUrl">

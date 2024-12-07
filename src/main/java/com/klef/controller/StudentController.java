@@ -12,9 +12,7 @@ import com.klef.model.Student;
 import com.klef.service.ProjectService;
 import com.klef.service.StudentService;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/student")
@@ -27,11 +25,11 @@ public class StudentController {
         String username = (String) session.getAttribute("studentUsername");
         System.out.println("Username in edit profile :"+username);
         if (username == null) {
-            return "redirect:/login"; // Redirect to login if session expired
+            return "redirect:/login"; 
         }
         Student student = studentService.findByUsername(username);
         model.addAttribute("student", student);
-        return "edit_profile"; // Render edit_profile.jsp
+        return "edit_profile";
     }
     @PostMapping("/edit-profile")
     public String updateProfile(@ModelAttribute Student updatedStudent, HttpSession session) {
@@ -42,7 +40,6 @@ public class StudentController {
 
         studentService.updateStudent(studentId, updatedStudent);
         session.setAttribute("student", updatedStudent);
-        // Update session attributes
         session.setAttribute("studentName", updatedStudent.getName());
         session.setAttribute("studentUsername",updatedStudent.getUsername());
         return "redirect:/student/dashboard";
@@ -72,20 +69,13 @@ public class StudentController {
     	System.out.println("Requested for add project page");
         String username = (String) session.getAttribute("studentName");
         if (username == null) {
-            return "redirect:/login"; // Redirect to login if session expired
+            return "redirect:/login";
         }
-
-        // Add student details to model if required
         model.addAttribute("studentName", username);
-        return "add_project"; // Render add_project.jsp
+        return "add_project";
     }
     @PostMapping("/add-project")
-    public String addProject(
-            @RequestParam("title") String title,
-            @RequestParam("description") String description,
-            @RequestParam("progress") String progress,
-            @RequestParam(value = "mediaUrl", required = false) String mediaUrl,
-            HttpSession session) {
+    public String addProject(@RequestParam("title") String title,@RequestParam("description") String description,@RequestParam("progress") String progress,@RequestParam(value = "mediaUrl", required = false) String mediaUrl,HttpSession session) {
         String username = (String) session.getAttribute("studentUsername");
         if (username == null) {
             return "redirect:/login";
@@ -112,10 +102,8 @@ public class StudentController {
     
     @GetMapping("/view-projects")
     public String viewProjects(HttpSession session, Model model) {
-        // Get the logged-in student's username from the session
         String username = (String) session.getAttribute("studentUsername");
         System.out.println("Username: " + username);
-
         if (username != null) {
             Student student = studentService.findByUsername(username);
             List<Project> projects = projectService.getProjectsByStudent(student);
@@ -170,14 +158,11 @@ public class StudentController {
                                 @RequestParam String progress,
                                 @RequestParam(required = false) String mediaUrl,
                                 RedirectAttributes redirectAttributes) {
-        // Create a Project object
         Project project = new Project();
         project.setTitle(title);
         project.setDescription(description);
         project.setProgress(progress);
         project.setMediaUrl(mediaUrl);
-
-        // Pass the project to the service
         projectService.updateProject(projectId, project);
 
         redirectAttributes.addFlashAttribute("successMessage", "Project updated successfully.");
@@ -192,16 +177,14 @@ public class StudentController {
             Student student = studentService.findByUsername(username);
             model.addAttribute("student", student);
         } else {
-            return "redirect:/login"; // Redirect to login if the user is not logged in
+            return "redirect:/login";
         }
-        return "view_profile"; // Render the View Profile JSP
+        return "view_profile";
     }
-
-    // Handle logout - invalidate session
     @PostMapping("/logout")
     public String logout(HttpSession session) {
-        session.invalidate(); // This invalidates the session and logs the student out
-        return "redirect:/"; // Redirect to the login page
+        session.invalidate();
+        return "redirect:/";
     }
     public StudentController(StudentService studentService,ProjectService projectservice) {
         this.studentService = studentService;

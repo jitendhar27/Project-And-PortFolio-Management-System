@@ -125,45 +125,7 @@
         <button type="submit">Save Changes</button>
     </form>
 
-    <h3>Your Projects</h3>
-    <% 
-        // Get the list of projects from the request attribute
-        List<Project> projects = (List<Project>) request.getAttribute("projects");
-        if (projects != null && !projects.isEmpty()) {
-    %>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Progress (%)</th>
-                <th>Media URL</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (Project project : projects) { %>
-            <tr>
-                <td><%= project.getTitle() %></td>
-                <td><%= project.getDescription() %></td>
-                <td><%= project.getProgress() %></td>
-                <td>
-                    <% if (project.getMediaUrl() != null && !project.getMediaUrl().isEmpty()) { %>
-                        <a href="<%= project.getMediaUrl() %>" target="_blank">View Media</a>
-                    <% } else { %>
-                        N/A
-                    <% } %>
-                </td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-    <% 
-        } else { 
-    %>
-    <p>No projects found. <a href="/student/add-project">Add a new project</a></p>
-    <% } %>
-
-    <br>
+    
     <div style="text-align: center;">
         <a href="/student/dashboard">Back to Dashboard</a>
     </div>

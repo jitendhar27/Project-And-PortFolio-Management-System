@@ -11,6 +11,7 @@ public class Project {
     private String Title;
     
     private String Progress;
+   
     
     
     public String getTitle() {
@@ -32,7 +33,6 @@ public class Project {
 	private String name;
     private String description;
 
-    // Add mediaUrl field
     private String mediaUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -78,6 +78,10 @@ public class Project {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
+
+	
+
+	
     
     
 

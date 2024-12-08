@@ -4,92 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <title>Before Login Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Added font link -->
     <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(120deg, #4CAF50, #81c784); /* Green gradient background */
         margin: 0;
         padding: 0;
-    }
-    header {
-        background-color: #4CAF50;
-        color: white;
-        padding: 15px 20px;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        color: rgb(55, 56, 54);
     }
     nav {
-        background-color: #333;
-        overflow: hidden;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
     nav a {
-        float: left;
-        display: block;
         color: white;
-        text-align: center;
-        padding: 14px 20px;
         text-decoration: none;
+        margin: 0 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
     }
     nav a:hover {
-        background-color: #575757;
+        background: #81c784; /* Light green on hover */
+        transform: scale(1.1);
+        color: black;
     }
     .container {
-        padding: 20px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    h2 {
+    .center-box {
+        background: white;
         color: #333;
+        border-radius: 15px;
+        padding: 50px;
+        width: 700px;
         text-align: center;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+        animation: slideIn 1s ease-in-out;
     }
-    .message {
-        font-size: 18px;
-        color: #333;
+    @keyframes slideIn {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    .center-box h2 {
+        font-size: 38px;
+        margin-bottom: 20px;
+        color: #4CAF50; /* Green color for heading */
+        font-family: 'Pacifico', cursive; /* Applied the same font */
+    }
+    .center-box .message {
+        font-family: 'Times New Roman', serif; /* Updated font-family */
+        font-size: 24px;
+        color: #000000; /* Dark black color */
+        margin: 20px 0;
+    }
+    .center-box .buttons {
         margin-top: 20px;
-        text-align: center;
     }
-    .buttons {
-        text-align: center;
-        margin-top: 20px;
-    }
-    .buttons a {
-        padding: 10px 20px;
-        background-color: #4CAF50;
+    .center-box .buttons a {
+        padding: 15px 30px;
+        background: linear-gradient(90deg, #000000, #4CAF50); /* Green gradient button */
         color: white;
         text-decoration: none;
         border-radius: 5px;
-        margin: 10px 5px;
+        margin: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .buttons a:hover {
-        background-color: #45a049;
-    }
-
-    .about-us {
-        background-color: white;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-top: 20px;
-    }
-
-    .about-us p {
-        font-size: 18px;
-        color: #555;
-    }
-    .about-us h3 {
-        color: #4CAF50;
+    .center-box .buttons a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        background: #81c784; /* Light green on hover */
+        color: black;
     }
     .footer {
-        background-color: #333;
+        background: linear-gradient(90deg, #333333, #000000);
         color: white;
-        padding: 10px;
         text-align: center;
+        padding: 1px;
+        font-size: 14px;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
     }
-
-</style>
-
+    </style>
 </head>
 <body>
-
-<header>
-    <h1>Welcome to the Student Portal</h1>
-</header>
 
 <nav>
     <a href="/home">Home</a>
@@ -99,25 +116,20 @@
 </nav>
 
 <div class="container">
-    <h2>Student Portal Dashboard</h2>
-    <div class="message">
-        <p>Explore our portal to manage your projects, profile, and more!</p>
+    <div class="center-box">
+        <h2>Projects & Portfolios</h2>
+        <div class="message">
+            <p>Explore our portal to manage your projects, profile, and more!</p>
+        </div>
+        <div class="buttons">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
     </div>
-
-    <div class="buttons">
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-    </div>
-</div>
-
-<div class="about-us">
-    <h3>About Us</h3>
-    <p>Our portal helps students track and manage their projects. Here, students can submit their work, monitor progress, and much more. Join us today and enhance your project management experience!</p>
 </div>
 
 <div class="footer">
-    <p>&copy; 2024 Student Portal</p>
+    <p> © Copyright 2024 by Project Hub. All Rights Reserved.</p>
 </div>
-
 </body>
 </html>

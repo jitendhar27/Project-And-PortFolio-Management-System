@@ -40,12 +40,6 @@ public class AdminController {
         adminService.addFeedback(projectId, feedbackContent);
         return "redirect:/admin/manage-projects";
     }
-    @GetMapping("/feedback/{projectId}")
-    public String viewFeedback(@PathVariable Long projectId, Model model) {
-        Feedback feedback = adminService.getFeedbackByProjectId(projectId);
-        model.addAttribute("feedback", feedback);
-        return "feedback-details";
-    }
     @GetMapping("/students")
     public ModelAndView showStudentList() {
         List<Student> students = adminService.getAllStudents();

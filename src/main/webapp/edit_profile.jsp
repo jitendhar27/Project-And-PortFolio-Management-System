@@ -1,105 +1,113 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
-<%@ page import="com.klef.model.Project" %>
+<%@ page import="com.klef.model.Student" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #4CAF50, #81c784);
             margin: 0;
             padding: 0;
-            background-color: #f4f7fc;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #373836;
         }
         nav {
-            background-color: #333;
-            overflow: hidden;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         nav a {
-            float: left;
-            display: block;
             color: white;
-            text-align: center;
-            padding: 14px 20px;
             text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         nav a:hover {
-            background-color: #575757;
+            background: #81c784;
+            transform: scale(1.1);
+            color: black;
         }
         .container {
+            flex: 1;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h2 {
-            text-align: center;
-            color: #333;
+            color: white;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
         }
         form {
-            max-width: 500px;
-            margin: auto;
+            max-width: 600px;
+            width: 100%;
             background: #ffffff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        form label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
         }
         input, button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+            color: #555;
+        }
+        input[readonly] {
+            background-color: #f4f4f9;
+            color: #888;
         }
         button {
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         button:hover {
             background-color: #45a049;
+            transform: scale(1.05);
         }
         a {
             text-decoration: none;
-            color: #4CAF50;
+            color: #f4f4f9;
+            margin-top: 15px;
+            display: inline-block;
+            transition: color 0.3s ease;
         }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f4f4f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
+        a:hover {
+            color: #d9e7de;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ProjectHub</h1>
-</header>
-
-<!-- Navbar -->
 <nav>
-	<a href="/student/dashboard">Dashboard</a>
+    <a href="/student/dashboard">Dashboard</a>
     <a href="/student/view-profile">View Profile</a>
     <a href="/student/view-projects">View Projects</a>
     <a href="/student/add-project">Add Project</a>
@@ -125,8 +133,7 @@
         <button type="submit">Save Changes</button>
     </form>
 
-    
-    <div style="text-align: center;">
+    <div>
         <a href="/student/dashboard">Back to Dashboard</a>
     </div>
 </div>

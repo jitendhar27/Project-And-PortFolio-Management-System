@@ -1,70 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #4CAF50, #81c784);
             margin: 0;
             padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: rgb(55, 56, 54);
         }
         nav {
-            background-color: #333;
-            overflow: hidden;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         nav a {
-            float: left;
-            display: block;
             color: white;
-            text-align: center;
-            padding: 14px 20px;
             text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         nav a:hover {
-            background-color: #575757;
+            background: #81c784;
+            transform: scale(1.1);
+            color: black;
         }
         .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
-        h2 {
+        .about-box {
+            background: white;
             color: #333;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 800px;
             text-align: center;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1s ease-in-out;
         }
-        .about-us {
-            background-color: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 20px;
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
-        .about-us p {
+        .about-box h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            font-family: 'Pacifico', cursive;
+        }
+        .about-box p {
             font-size: 18px;
             color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
-        .about-us h3 {
+        .about-box h3 {
             color: #4CAF50;
+            margin-bottom: 10px;
         }
         .footer {
-            background-color: #333;
+            background: linear-gradient(90deg, #333333, #000000);
             color: white;
-            padding: 10px;
             text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>About Us</h1>
-</header>
 
 <nav>
     <a href="/home">Home</a>
@@ -74,18 +100,34 @@
 </nav>
 
 <div class="container">
-    <h2>About the Student Portal</h2>
-    <p>Our portal is designed to provide a comprehensive project tracking and portfolio management system for students. With an easy-to-use interface, students can manage their profiles, add projects, track progress, and collaborate on projects.</p>
-    <p>We aim to help students stay organized, keep track of their academic projects, and build a professional portfolio that can be shared with potential employers.</p>
-
-    <div class="about-us">
+    <div class="about-box">
+        <h2>About Us</h2>
+        <p>
+            Welcome to our **Student Portal**, a comprehensive platform designed to help students manage academic projects and build their professional portfolios efficiently.
+        </p>
+        <p>
+            This portal provides tools for tracking project progress, showcasing completed works, and collaborating with peers. Our goal is to ensure that students are equipped with a structured and organized approach to managing their academic and extracurricular projects.
+        </p>
         <h3>Our Vision</h3>
-        <p>Our vision is to empower students to manage their academic projects effectively, helping them grow professionally and academically.</p>
+        <p>
+            To empower students with tools that bridge the gap between academic achievement and professional growth. By leveraging the power of technology, we aim to prepare students for the competitive world ahead.
+        </p>
+        <h3>Why Choose Us?</h3>
+        <ul style="text-align: left; margin: 20px 0; line-height: 1.8;">
+            <li><b>Intuitive Design:</b> A user-friendly interface that simplifies project management.</li>
+            <li><b>Collaboration Features:</b> Tools to facilitate teamwork and peer collaboration.</li>
+            <li><b>Portfolio Showcase:</b> Easily create and share your portfolio with potential employers.</li>
+            <li><b>Secure & Reliable:</b> Robust security measures to protect your data and credentials.</li>
+        </ul>
+        <h3>Our Commitment</h3>
+        <p>
+            We are committed to providing a platform that helps students grow, learn, and excel in their academic and professional journeys. Whether you're working on a school project or preparing for a job interview, our portal has the features to support your success.
+        </p>
     </div>
 </div>
 
 <div class="footer">
-    <p>&copy; 2024 Student Portal</p>
+    <p>&copy; 2024 Student Portal. All Rights Reserved.</p>
 </div>
 
 </body>

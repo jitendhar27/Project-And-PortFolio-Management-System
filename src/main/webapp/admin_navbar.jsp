@@ -55,10 +55,6 @@
         }
     </style>
 </head>
-<header>
-    <h1>Admin Dashboard</h1>
-    <h3>Welcome, ${adminName}</h3>
-</header>
 <body>
     <nav>
         <a href="/admin/dashboard">Dashboard</a>

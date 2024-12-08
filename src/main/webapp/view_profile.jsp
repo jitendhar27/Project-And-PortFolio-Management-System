@@ -5,88 +5,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #4CAF50, #81c784);
             margin: 0;
             padding: 0;
-            background-color: #f4f7fc;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: rgb(55, 56, 54);
         }
         nav {
-            background-color: #333;
-            overflow: hidden;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         nav a {
-            float: left;
-            display: block;
             color: white;
-            text-align: center;
-            padding: 14px 20px;
             text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         nav a:hover {
-            background-color: #575757;
+            background: #81c784;
+            transform: scale(1.1);
+            color: black;
         }
         .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 20px;
         }
         h2 {
-            text-align: center;
-            color: #333;
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
         }
         table {
             width: 80%;
             margin: 20px auto;
             border-collapse: collapse;
             background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
         }
         th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            font-size: 18px;
+            color: #555;
         }
         th {
-            background-color: #f4f4f9;
+            background: #f4f4f9;
+            color: #333;
+            font-weight: bold;
         }
         tr:hover {
             background-color: #f1f1f1;
-        }
-        .action-btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            color: white;
-        }
-        .edit-btn {
-            background-color: #4CAF50;
-        }
-        .edit-btn:hover {
-            background-color: #45a049;
         }
         .no-projects {
             text-align: center;
             margin: 20px;
         }
+        .action-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 0 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .action-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ProjectHub</h1>
-</header>
-
-<!-- Navbar -->
 <nav>
-	<a href="/student/dashboard">Dashboard</a>
+    <a href="/student/dashboard">Dashboard</a>
     <a href="/student/view-profile">View Profile</a>
     <a href="/student/view-projects">View Projects</a>
     <a href="/student/add-project">Add Project</a>
@@ -112,7 +124,7 @@
     </table>
 
     <div class="no-projects">
-        <a href="/student/edit-profile" class="action-btn edit-btn">Edit Profile</a>
+        <a href="/student/edit-profile" class="action-btn">Edit Profile</a>
         <a href="/student/dashboard" class="action-btn">Back to Dashboard</a>
     </div>
 </div>

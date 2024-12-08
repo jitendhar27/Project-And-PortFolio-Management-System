@@ -6,66 +6,89 @@
 <head>
     <meta charset="UTF-8">
     <title>View Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background: linear-gradient(120deg, #4CAF50, #81c784);
             margin: 0;
             padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #373836;
         }
         nav {
-            background-color: #333;
-            overflow: hidden;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         nav a {
-            float: left;
-            display: block;
             color: white;
-            text-align: center;
-            padding: 14px 20px;
             text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         nav a:hover {
-            background-color: #575757;
+            background: #81c784;
+            transform: scale(1.1);
+            color: black;
         }
         .container {
+            flex: 1;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h2 {
-            text-align: center;
-            color: #333;
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
         }
         table {
-            width: 80%;
-            margin: 20px auto;
+            width: 90%;
             border-collapse: collapse;
             background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
         }
         th, td {
-            padding: 12px;
+            padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            font-size: 16px;
+            color: #555;
         }
         th {
-            background-color: #f4f4f9;
+            background: #f4f4f9;
+            color: #333;
+            font-weight: bold;
         }
         tr:hover {
             background-color: #f1f1f1;
         }
         .action-btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
+            background-color: #4CAF50;
             color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            margin: 0 5px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .action-btn:hover {
+            transform: scale(1.05);
         }
         .edit-btn {
             background-color: #4CAF50;
@@ -81,18 +104,21 @@
         }
         .no-projects {
             text-align: center;
-            margin: 20px;
+            color: white;
+        }
+        .no-projects p {
+            font-size: 18px;
+        }
+        .no-projects a {
+            color: #f4f4f9;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ProjectHub</h1>
-</header>
-
 <nav>
-	<a href="/student/dashboard">Dashboard</a>
+    <a href="/student/dashboard">Dashboard</a>
     <a href="/student/view-profile">View Profile</a>
     <a href="/student/view-projects">View Projects</a>
     <a href="/student/add-project">Add Project</a>
@@ -103,7 +129,6 @@
 <div class="container">
     <h2>Your Projects</h2>
     <% 
-        // Get the list of projects from the request attribute
         List<Project> projects = (List<Project>) request.getAttribute("projects");
         if (projects != null && !projects.isEmpty()) {
     %>

@@ -8,77 +8,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #4CAF50, #81c784);
             margin: 0;
             padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: rgb(55, 56, 54);
         }
         nav {
-            background-color: #333;
-            overflow: hidden;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         nav a {
-            float: left;
-            display: block;
             color: white;
-            text-align: center;
-            padding: 14px 20px;
             text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         nav a:hover {
-            background-color: #575757;
-        }
-        h2, h3 {
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            padding: 20px;
-            width: 90%;
-            margin: 0 auto;
-        }
-        .overview {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            width: 300px;
-            margin: 10px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .card h4 {
-            color: #4CAF50;
-        }
-        .buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 0 10px;
-            display: inline-block;
-        }
-        .btn:hover {
-            background-color: #45a049;
+            background: #81c784;
+            transform: scale(1.1);
+            color: black;
         }
         .logout-btn {
             background-color: #f44336;
@@ -86,16 +47,73 @@
         .logout-btn:hover {
             background-color: #e41f1f;
         }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h2 {
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
+        }
+        .overview {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+        }
+        .card h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        .card p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .buttons {
+            margin-top: 40px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 0 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ProjectHub</h1>
-</header>
-
 <nav>
-	<a href="/student/dashboard">Dashboard</a>
+    <a href="/student/dashboard">Dashboard</a>
     <a href="/student/view-profile">View Profile</a>
     <a href="/student/view-projects">View Projects</a>
     <a href="/student/add-project">Add Project</a>

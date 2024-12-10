@@ -137,7 +137,7 @@
         <a href="/admin/dashboard">Dashboard</a>
         <a href="/admin/students">Manage Students</a>
         <a href="/admin/projects">Manage Projects</a>
-        <a href="/admin/logout">Logout</a>
+        <a href="/logout">Logout</a>
     </nav>
 
     <div class="container">
